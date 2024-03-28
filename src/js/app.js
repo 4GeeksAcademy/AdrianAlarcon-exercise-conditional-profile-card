@@ -32,29 +32,15 @@ function render(variables = {}) {
     variables.name = "Ingrese su nombre";
     variables.lastName = "";
   }
-  if (variables.name != null && variables.lastName == null) {
-    variables.name = "Ingrese su nombre";
-    variables.lastName = "";
-  }
-  if (variables.name == null && variables.lastName != null) {
-    variables.name = "Ingrese su nombre";
-    variables.lastName = "";
-  }
+
   if (variables.role == null) {
     variables.role = "Sin rol asignado";
   }
   if (variables.city == null && variables.country == null) {
-    variables.city = "Sin locaclización asignada";
+    variables.city = "Sin localización asignada";
     variables.country = "";
   }
-  if (variables.city != null && variables.country == null) {
-    variables.city = "Sin locaclización asignada";
-    variables.country = "";
-  }
-  if (variables.city == null && variables.country != null) {
-    variables.city = "Sin locaclización asignada";
-    variables.country = "";
-  }
+
   if (variables.socialMediaPosition == "Left") {
     variables.socialMediaPosition = "position-left";
   }
