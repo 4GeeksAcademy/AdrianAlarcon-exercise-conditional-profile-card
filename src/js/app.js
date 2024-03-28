@@ -22,27 +22,48 @@ import "../style/index.css";
         city: null
     }
  */
+
 function render(variables = {}) {
   console.log("These are the current variables: ", variables); // print on the console
   // here we ask the logical questions to make decisions on how to build the html
   // if includeCover==false then we reset the cover code without the <img> tag to make the cover transparent.
   let cover = `<div class="cover"><img src="${variables.background}" /></div>`;
   if (variables.includeCover == false) cover = "<div class='cover'></div>";
-  if (variables.name == null && variables.lastName == null) {
-    variables.name = "Ingrese su nombre";
+
+  if (variables.name === null && variables.lastName === null) {
+    variables.name = "Introduzca su nombre";
     variables.lastName = "";
+  } else {
+    if (variables.name === null) {
+      variables.name = "";
+    }
+
+    if (variables.lastName === null) {
+      variables.lastName = "";
+    }
   }
 
   if (variables.role == null) {
     variables.role = "Sin rol asignado";
   }
-  if (variables.city == null && variables.country == null) {
+
+  if (variables.city === null && variables.country === null) {
     variables.city = "Sin localización asignada";
     variables.country = "";
+  } else {
+    if (variables.city === null) {
+      variables.city = "";
+    }
+
+    if (variables.country === null) {
+      variables.country = "";
+    }
   }
 
   if (variables.socialMediaPosition == "Left") {
     variables.socialMediaPosition = "position-left";
+  } else if (variables.socialMediaPosition == "Right") {
+    variables.socialMediaPosition = "position-right";
   }
 
   // reset the website body with the new html output
@@ -53,10 +74,10 @@ function render(variables = {}) {
           <h2>${variables.role}</h2>
           <h3>${variables.city}, ${variables.country}</h3>
           <ul class=${variables.socialMediaPosition}>
-            <li><a href="https://twitter.com/${variables.twitter}"><i class="fab fa-twitter"></i></a></li>
-            <li><a href="https://github.com/${variables.github}"><i class="fab fa-github"></i></a></li>
-            <li><a href="https://linkedin.com/school/${variables.linkedin}"><i class="fab fa-linkedin"></i></a></li>
-            <li><a href="https://instagram.com/${variables.instagram}"><i class="fab fa-instagram"></i></a></li>
+            <li><a href="${variables.twitter}" target="_blank"><i class="fab fa-twitter"></i></a></li>
+            <li><a href="${variables.github}" target="_blank"><i class="fab fa-github"></i></a></li>
+            <li><a href="${variables.linkedin}" target="_blank"><i class="fab fa-linkedin"></i></a></li>
+            <li><a href="${variables.instagram}" target="_blank"><i class="fab fa-instagram"></i></a></li>
           </ul>
         </div>
     `;
