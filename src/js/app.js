@@ -1,6 +1,6 @@
 import "../style/index.css";
 
-/**
+/*
  *  EDIT ONLY INSIDE THIS RENDER FUNCTION
  *  This function is called every time the user changes types or changes any input
  * 
@@ -10,7 +10,7 @@ import "../style/index.css";
         avatarURL: "https://randomuser.me/api/portraits/women/42.jpg", // this is the url for the profile avatar
         socialMediaPosition: "right", // social media bar position (left or right)
         
-        twitter: null, // social media usernames
+        twitter: "a", // social media usernames
         github: null,
         linkedin: null,
         instagram: null,
@@ -28,15 +28,29 @@ function render(variables = {}) {
   // if includeCover==false then we reset the cover code without the <img> tag to make the cover transparent.
   let cover = `<div class="cover"><img src="${variables.background}" /></div>`;
   if (variables.includeCover == false) cover = "<div class='cover'></div>";
+  if (variables.name == null || variables.lastName == null) {
+    variables.name = "Ingrese su nombre";
+    variables.lastName = "";
+  }
+  if (variables.role == null) {
+    variables.role = "Sin rol asignado";
+  }
+  if (variables.city == null || variables.country == null) {
+    variables.city = "Sin locaclización asignada";
+    variables.country = "";
+  }
+  if (variables.socialMediaPosition == "Left") {
+    variables.socialMediaPosition = "position-left";
+  }
 
   // reset the website body with the new html output
   document.querySelector("#widget_content").innerHTML = `<div class="widget">
             ${cover}
           <img src="${variables.avatarURL}" class="photo" />
-          <h1>Lucy Boilett</h1>
-          <h2>Web Developer</h2>
-          <h3>Miami, USA</h3>
-          <ul class="position-right">
+          <h1>${variables.name} ${variables.lastName}</h1>
+          <h2>${variables.role}</h2>
+          <h3>${variables.city}, ${variables.country}</h3>
+          <ul class=${variables.socialMediaPosition}>
             <li><a href="https://twitter.com/4geeksacademy"><i class="fab fa-twitter"></i></a></li>
             <li><a href="https://github.com/4geeksacademy"><i class="fab fa-github"></i></a></li>
             <li><a href="https://linkedin.com/school/4geeksacademy"><i class="fab fa-linkedin"></i></a></li>
@@ -54,11 +68,13 @@ window.onload = function() {
     // if includeCover is true the algorithm should show the cover image
     includeCover: true,
     // this is the image's url that will be used as a background for the profile cover
-    background: "https://images.unsplash.com/photo-1511974035430-5de47d3b95da",
+    background:
+      "https://media.licdn.com/dms/image/D4D16AQHYMOhqAr55LQ/profile-displaybackgroundimage-shrink_200_800/0/1705335738719?e=2147483647&v=beta&t=85TSAHcWRrz1Z9hjI-ZY2l8YS3at_rS8L2KeXz1xYq8",
     // this is the url for the profile avatar
-    avatarURL: "https://randomuser.me/api/portraits/women/42.jpg",
+    avatarURL:
+      "https://media.licdn.com/dms/image/C4E03AQF10EHPqMU7bQ/profile-displayphoto-shrink_800_800/0/1652460234104?e=2147483647&v=beta&t=r36lxEvORnXvKJDd9dJxD-IRGzmZ1FfGh4yGx0vGWxw",
     // social media bar position (left or right)
-    socialMediaPosition: "position-left",
+    socialMediaPosition: "position-right",
     // social media usernames
     twitter: null,
     github: null,
